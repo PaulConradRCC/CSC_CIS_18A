@@ -1,0 +1,1 @@
+This folder contains the .java source files in the 10th Edition Gaddis text (should be the same as the 11th Edition). 
