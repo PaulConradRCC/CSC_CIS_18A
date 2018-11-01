@@ -1,8 +1,8 @@
 package pjc;
 
 public class Fractions {
-    private int numerator;
-    private int denominator;
+    private int numerator=0;
+    private int denominator=1;
 
     /**
      * @return the numerator
