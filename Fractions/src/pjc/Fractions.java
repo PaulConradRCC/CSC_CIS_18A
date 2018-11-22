@@ -48,6 +48,7 @@ public class Fractions {
     
     public Fractions(int numerator, int denominator)
     {
+        //throw new UnsupportedOperationException("Need to implement Fractions(int, int) constructor");
         int g = this.gcd(numerator, denominator);
         this.setNumerator(numerator/g);
         this.setDenominator(denominator/g);                
@@ -71,12 +72,30 @@ public class Fractions {
         return gcd( b%a, a );
     }
     
+    public Fractions exp(Fractions op, int n)
+    {
+        // throw new UnsupportedOperationException("Fractions.exp TODO!");
+        int num=op.numerator;
+        int den=op.denominator;
+        
+        for(int i=1;i<n;i++)
+        {
+            num *= op.numerator;
+            den *= op.denominator;
+        }
+        
+        return new Fractions( num, den );
+    }
+    
     public Fractions add(Fractions op2)
     {
         int a = this.numerator;
         int b = this.denominator;
         int c = op2.numerator;
         int d = op2.denominator;
+        
+        if ( b*d == 0 ) // this in theory should never occur!
+            throw new ArithmeticException("Add: unexpected arithmetic exception");
         
         return new Fractions(a*d + b*c, b*d );
     }
@@ -88,6 +107,9 @@ public class Fractions {
         int c = op2.numerator;
         int d = op2.denominator;
         
+        if ( b*d == 0 ) // this in theory should never occur!
+            throw new ArithmeticException("Sub: unexpected arithmetic exception");
+        
         return new Fractions(a*d - b*c, b*d );
     }
     
@@ -98,6 +120,9 @@ public class Fractions {
         int c = op2.numerator;
         int d = op2.denominator;
         
+        if ( b*d == 0 ) // this in theory should never occur!
+            throw new ArithmeticException("Multiply: unexpected arithmetic exception");
+            
         return new Fractions(a*c, b*d );
     }
     
@@ -107,6 +132,9 @@ public class Fractions {
         int b = this.denominator;
         int c = op2.numerator;
         int d = op2.denominator;
+        
+        if ( b*c == 0 )
+            throw new ArithmeticException("Division by zero!");
         
         return new Fractions(a*d, b*c );
     }

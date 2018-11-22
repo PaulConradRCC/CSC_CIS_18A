@@ -194,28 +194,35 @@ public class FractionsTest {
     }
     
     @Test
-    public void testDivide3() {
+    public void testDivide3() { // this test is to demonstrate catching exceptions that are thrown.
         System.out.println("divide test 3");
         Fractions op2 = new Fractions(0,1);
         Fractions instance = new Fractions(7,8);
         Fractions expResult = null;
         try {
-             expResult = new Fractions(7,0);
+             expResult = new Fractions(7,0);             
         }
-        catch(Exception e)
+        catch(IllegalArgumentException e)
         {
-            System.err.println(e.getMessage()+" on line 207");            
+            System.err.println(e.getMessage()+" on line 203");            
+            assertEquals(true,true);
+        }
+        catch(NullPointerException e)
+        {
+            System.err.println(e.getMessage()+" on line 203");            
         }
         Fractions result = null;
         try {
-            result = instance.divide(op2);
+            result = instance.divide(op2);  
+            assertEquals(expResult.getNumerator(), result.getNumerator());
+            assertEquals(expResult.getDenominator(), result.getDenominator());
         }
         catch(Exception e)
         {
-                System.err.println(e.getMessage()+" on line 215");
-        }
-        assertEquals(expResult.getNumerator(), result.getNumerator());
-        assertEquals(expResult.getDenominator(), result.getDenominator());
+                System.err.println(e.getMessage()+" on line 211");
+                assertEquals(true,true);
+        }                        
+        
     }
     
     @Test
@@ -234,6 +241,16 @@ public class FractionsTest {
         Fractions instance = new Fractions(9,18);
         Fractions expResult = new Fractions(1,2);
         Fractions result = new Fractions(instance);
+        assertEquals(expResult.getNumerator(), result.getNumerator());
+        assertEquals(expResult.getDenominator(), result.getDenominator());
+    }
+    
+    @Test
+    public void testExp1() {
+        System.out.println("exp test 1");        
+        Fractions instance = new Fractions(7,8);
+        Fractions expResult = new Fractions(2401,4096);
+        Fractions result = instance.exp(instance,4);
         assertEquals(expResult.getNumerator(), result.getNumerator());
         assertEquals(expResult.getDenominator(), result.getDenominator());
     }
